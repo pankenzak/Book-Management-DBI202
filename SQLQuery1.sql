@@ -1,16 +1,4 @@
-drop table if exists loan;
-drop table if exists policy_rule;
-drop table if exists administrator;
-drop table if exists book_copy;
-drop table if exists book_of_author;
-drop table if exists book_category;
-drop table if exists book;
-drop table if exists publisher;
-drop table if exists librarian;
-drop table if exists author;
-drop table if exists category;
-drop table if exists member;
-GO
+
 create table member(
 	member_id varchar(20) not null primary key,
 	name nvarchar(50),
@@ -102,4 +90,5 @@ create table loan (
 	foreign key (librarian_id) references librarian(librarian_id),
 	foreign key (policy_id) references policy_rule(policy_id)
 )
+
 
