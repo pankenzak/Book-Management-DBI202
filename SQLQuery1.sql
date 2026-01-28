@@ -1,42 +1,30 @@
-drop table if exists member 
-GO
 create table member(
 	member_id varchar not null primary key,
-	name nvarchar(50),
-	address nvarchar(50),
-	phone_number float
+	name nvarchar,
+	address nvarchar,
+	phone_number varchar
 )
 
-drop table if exists category
-go
 create table category (
 	category_id varchar not null primary key,
 	category_name nvarchar
 )
 
-drop table if exists author
-go
 create table author (
 	author_id varchar not null primary key,
 	author_name nvarchar
 )
 
-drop table if exists librarian
-go
 create table librarian (
 	librarian_id varchar not null primary key,
 	librarian_name nvarchar
 )
 
-drop table if exists publisher
-go
 create table publisher (
 	publisher_id varchar not null primary key,
 	publisher_name nvarchar
 )
 
-drop table if exists book
-go
 create table book (
 	book_id varchar not null primary key,
 	publisher_id varchar,
@@ -47,8 +35,6 @@ create table book (
 	foreign key (librarian_id) references librarian(librarian_id)
 )
 
-drop table if exists book_category
-go
 create table book_category (
 	book_id varchar not null,
 	category_id varchar not null,
@@ -57,8 +43,6 @@ create table book_category (
 	primary key (book_id, category_id)
 )
 
-drop table if exists book_of_author 
-go
 create table book_of_author (
 	author_id varchar not null,
 	book_id varchar not null,
@@ -67,16 +51,12 @@ create table book_of_author (
 	primary key (author_id, book_id)
 )
 
-drop table if exists book_copy
-go
 create table book_copy (
 	book_copy_id varchar not null primary key,
 	book_id varchar,
 	foreign key (book_id) references book(book_id)
 )
 
-drop table if exists administrator
-go
 create table administrator (
 	admin_id varchar not null primary key,
 	admin_name nvarchar,
@@ -84,8 +64,6 @@ create table administrator (
 	phone_number float
 )
 
-drop table if exists policy_rule
-go
 create table policy_rule (
 	policy_id varchar not null primary key,
 	admin_id varchar not null,
@@ -96,8 +74,6 @@ create table policy_rule (
 	foreign key (admin_id) references administrator(admin_id)
 )
 
-drop table if exists loan
-go
 create table loan (
 	loan_id varchar not null primary key,
 	member_id varchar not null,
@@ -113,6 +89,3 @@ create table loan (
 	foreign key (librarian_id) references librarian(librarian_id),
 	foreign key (policy_id) references policy_rule(policy_id)
 )
-
-
-
