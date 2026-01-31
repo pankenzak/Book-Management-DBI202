@@ -105,9 +105,10 @@ create table loan_detail (
 	loan_id varchar(20) not null,
 	overdue_date date,
 	return_date date,
-	sum_of_fine float
+	sum_of_fine float,
 	foreign key (book_copy_id) references book_copy(book_copy_id),
 	foreign key (loan_id) references loan(loan_id),
 	primary key (loan_id, book_copy_id)
 
 )
+
