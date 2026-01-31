@@ -10,6 +10,7 @@ IF OBJECT_ID('librarian', 'U') IS NOT NULL DROP TABLE librarian;
 IF OBJECT_ID('author', 'U') IS NOT NULL DROP TABLE author;
 IF OBJECT_ID('category', 'U') IS NOT NULL DROP TABLE category;
 IF OBJECT_ID('member', 'U') IS NOT NULL DROP TABLE member;
+IF OBJECT_ID('loan_detail','U') is not null drop table loan_detail
 GO
 
 create table member(
@@ -108,4 +109,5 @@ create table loan_detail (
 	foreign key (book_copy_id) references book_copy(book_copy_id),
 	foreign key (loan_id) references loan(loan_id),
 	primary key (loan_id, book_copy_id)
+
 )
