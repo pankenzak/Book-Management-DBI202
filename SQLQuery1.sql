@@ -1,73 +1,72 @@
-
 create table member(
-	member_id varchar(20) not null primary key,
-	name nvarchar(50),
-	address nvarchar(100),
-	phone_number varchar(15)
+	member_id varchar not null primary key,
+	name nvarchar,
+	address nvarchar,
+	phone_number float
 )
 
 create table category (
-	category_id varchar(20) not null primary key,
-	category_name nvarchar(50)
+	category_id varchar not null primary key,
+	category_name nvarchar
 )
 
 create table author (
-	author_id varchar(20) not null primary key,
-	author_name nvarchar(50)
+	author_id varchar not null primary key,
+	author_name nvarchar
 )
 
 create table librarian (
-	librarian_id varchar(20) not null primary key,
-	librarian_name nvarchar(50)
+	librarian_id varchar not null primary key,
+	librarian_name nvarchar
 )
 
 create table publisher (
-	publisher_id varchar(20) not null primary key,
-	publisher_name nvarchar(50)
+	publisher_id varchar not null primary key,
+	publisher_name nvarchar
 )
 
 create table book (
-	book_id varchar(20) not null primary key,
-	publisher_id varchar(20),
-	librarian_id varchar(20),
-	name_book nvarchar(50),
+	book_id varchar not null primary key,
+	publisher_id varchar,
+	librarian_id varchar,
+	name_book nvarchar,
 	release date,
 	foreign key (publisher_id) references publisher(publisher_id),
 	foreign key (librarian_id) references librarian(librarian_id)
 )
 
 create table book_category (
-	book_id varchar(20) not null,
-	category_id varchar(20) not null,
+	book_id varchar not null,
+	category_id varchar not null,
 	foreign key (book_id) references book(book_id),
 	foreign key (category_id) references category(category_id),
 	primary key (book_id, category_id)
 )
 
 create table book_of_author (
-	author_id varchar(20) not null,
-	book_id varchar(20) not null,
+	author_id varchar not null,
+	book_id varchar not null,
 	foreign key (author_id) references author(author_id),
 	foreign key (book_id) references book(book_id),
 	primary key (author_id, book_id)
 )
 
 create table book_copy (
-	book_copy_id varchar(20) not null primary key,
-	book_id varchar(20),
+	book_copy_id varchar not null primary key,
+	book_id varchar,
 	foreign key (book_id) references book(book_id)
 )
 
 create table administrator (
-	admin_id varchar(20) not null primary key,
-	admin_name nvarchar(50),
-	email nvarchar(50),
-	phone_number varchar(15)
+	admin_id varchar not null primary key,
+	admin_name nvarchar,
+	email nvarchar,
+	phone_number float
 )
 
 create table policy_rule (
-	policy_id varchar(20) not null primary key,
-	admin_id varchar(20) not null,
+	policy_id varchar not null primary key,
+	admin_id varchar not null,
 	effective_date date,
 	expiry_date date,
 	fine_amount float,
@@ -76,11 +75,11 @@ create table policy_rule (
 )
 
 create table loan (
-	loan_id varchar(20) not null primary key,
-	member_id varchar(20) not null,
-	book_copy_id varchar(20) not null,
-	librarian_id varchar(20) not null,
-	policy_id varchar(20) not null,
+	loan_id varchar not null primary key,
+	member_id varchar not null,
+	book_copy_id varchar not null,
+	librarian_id varchar not null,
+	policy_id varchar not null,
 	loan_date date,
 	overdue_date date,
 	sum_of_fine float,
